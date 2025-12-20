@@ -738,31 +738,123 @@
             </div>
         </div>
     </section>
+<!-- CONTACT SECTION -->
+<section id="contact" class="py-24 relative z-10">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto hologram-card rounded-3xl p-10 md:p-16 border border-white/10 bg-gradient-to-b from-dark-card to-transparent">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-space font-bold mb-4">Initialize <span class="text-neon-pink">Ignition</span></h2>
+                <p class="text-gray-400">Establish a secure connection with our team.</p>
+            </div>
 
-    <!-- CONTACT -->
-    <section id="contact" class="py-24 relative z-10">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto hologram-card rounded-3xl p-10 md:p-16 border border-white/10 bg-gradient-to-b from-dark-card to-transparent">
-                <div class="text-center mb-10">
-                    <h2 class="text-4xl font-space font-bold mb-4">Initialize <span class="text-neon-pink">Ignition</span></h2>
-                    <p class="text-gray-400">Establish a secure connection with our team.</p>
+            <!-- FORM START -->
+            <!-- 
+               IMPORTANT: 
+               1. Replace 'YOUR_FORMSPREE_ID' in the action URL below with the code you got from Step 1.
+               Example: https://formspree.io/f/mqkvojwl
+            -->
+            <form id="quantumForm" action="https://formspree.io/f/mbdrgbel" method="POST" class="space-y-6 max-w-lg mx-auto">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Name Field -->
+                    <input type="text" name="name" placeholder="ID / NAME" required 
+                        class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover>
+                    
+                    <!-- Email Field (Linked to techinsightx@gmail.com via Formspree) -->
+                    <input type="email" name="email" placeholder="COMMS LINK" required 
+                        class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover>
+                </div>
+                
+                <!-- Message Field -->
+                <textarea name="message" rows="4" placeholder="TRANSMISSION DATA" required 
+                    class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover></textarea>
+                
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="w-full neon-button py-4 text-white font-bold uppercase tracking-widest hover:bg-white/5" data-hover>
+                    Transmit Data
+                </button>
+
+                <!-- Status Messages (Hidden by default) -->
+                <div id="formStatus" class="hidden text-center mt-4 p-4 rounded-lg border border-accent/30 bg-accent/10">
+                    <p class="text-accent font-bold tracking-widest text-sm flex items-center justify-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i> TRANSMISSION SUCCESSFUL
+                    </p>
+                </div>
+                <div id="formError" class="hidden text-center mt-4 p-4 rounded-lg border border-neon-pink/30 bg-neon-pink/10">
+                    <p class="text-neon-pink font-bold tracking-widest text-sm">CONNECTION FAILED. RETRY.</p>
                 </div>
 
-                <form class="space-y-6 max-w-lg mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text" placeholder="ID / NAME" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover>
-                        <input type="email" placeholder="COMMS LINK" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover>
-                    </div>
-                    <textarea rows="4" placeholder="TRANSMISSION DATA" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover></textarea>
-                    
-                    <button class="w-full neon-button py-4 text-white font-bold uppercase tracking-widest hover:bg-white/5" data-hover>
-                        Transmit Data
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+            </form>
+            <!-- FORM END -->
 
+        </div>
+    </div>
+</section>
+
+<!-- JAVASCRIPT FOR HANDLING THE FORM WITHOUT RELOADING -->
+<script>
+    const form = document.getElementById("quantumForm");
+    const statusDiv = document.getElementById("formStatus");
+    const errorDiv = document.getElementById("formError");
+    const btn = document.getElementById("submitBtn");
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        
+        // 1. Visual Loading State
+        const originalText = btn.innerText;
+        btn.innerText = "ENCRYPTING & SENDING...";
+        btn.style.opacity = "0.7";
+        btn.disabled = true;
+
+        const data = new FormData(event.target);
+
+        try {
+            // 2. Send Data to Formspree
+            const response = await fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            // 3. Handle Response
+            if (response.ok) {
+                statusDiv.classList.remove('hidden');
+                errorDiv.classList.add('hidden');
+                form.reset(); // Clear inputs
+                btn.innerText = "DATA SENT";
+                lucide.createIcons(); // Refresh icons if needed
+                
+                // Reset button after 5 seconds
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.style.opacity = "1";
+                    statusDiv.classList.add('hidden');
+                }, 5000);
+            } else {
+                // Formspree rejected it (Spam or bad email)
+                const data = await response.json();
+                if (Object.hasOwn(data, 'errors')) {
+                    errorDiv.querySelector('p').innerText = data["errors"].map(error => error["message"]).join(", ").toUpperCase();
+                }
+                throw new Error("Form Error");
+            }
+        } catch (error) {
+            // Network Error
+            statusDiv.classList.add('hidden');
+            errorDiv.classList.remove('hidden');
+            btn.innerText = "RETRY TRANSMISSION";
+            btn.disabled = false;
+            btn.style.opacity = "1";
+        }
+    }
+
+    form.addEventListener("submit", handleSubmit);
+</script>
+    
     <!-- FOOTER -->
     <footer class="bg-dark border-t border-white/10 pt-16 pb-8 relative z-10">
         <div class="container mx-auto px-6">
@@ -778,8 +870,8 @@
                 <div>
                     <h4 class="text-white font-bold mb-6">Protocols</h4>
                     <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="strategy.html" class="hover:text-accent transition-colors" data-hover>Strategy</a></li>
-                        <li><a href="development.html" class="hover:text-accent transition-colors" data-hover>Development</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors" data-hover>Strategy</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors" data-hover>Development</a></li>
                     </ul>
                 </div>
                 
@@ -787,7 +879,7 @@
                     <h4 class="text-white font-bold mb-6">Network</h4>
                     <ul class="space-y-3 text-sm text-gray-400">
                         <li><a href="about.html" class="hover:text-accent transition-colors" data-hover>About</a></li>
-                        <li><a href="careers.html" class="hover:text-accent transition-colors" data-hover>Careers</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors" data-hover>Careers</a></li>
                     </ul>
                 </div>
 
@@ -961,4 +1053,5 @@
     </script>
 </body>
 </html>
+
 
