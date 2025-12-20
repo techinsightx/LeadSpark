@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Join the Singularity</title>
+    
+    <!-- Frameworks & Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        secondary: '#FF6B35',
+                        accent: '#00D4AA',
+                        'electric-blue': '#3D7FFF',
+                        'neon-pink': '#FF2E93',
+                        'cyber-yellow': '#FFD300',
+                        dark: '#0A0B14',
+                        'dark-card': 'rgba(19, 20, 31, 0.75)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        space: ['Space Grotesk', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'scan': 'scan 4s linear infinite',
+                        'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+                        'matrix': 'matrix 20s linear infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        scan: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100vh)' }
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(255,107,53,0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(0,212,170,0.5)' }
+                        },
+                        matrix: {
+                            '0%': { backgroundPosition: '0% 0%' },
+                            '100%': { backgroundPosition: '0% 100%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --hologram-grid: linear-gradient(rgba(0, 212, 170, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 212, 170, 0.1) 1px, transparent 1px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        
+        body { 
+            background-color: #0A0B14; 
+            color: white; 
+            overflow-x: hidden; 
+            position: relative;
+        }
+
+        /* --- 1. CUSTOM CURSOR --- */
+        .cursor-dot { width: 8px; height: 8px; background: #FF6B35; position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; transition: transform 0.1s; }
+        .cursor-ring { width: 40px; height: 40px; border: 2px solid #00D4AA; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; mix-blend-mode: difference; transition: all 0.2s ease-out; }
+        body.hovering .cursor-ring { width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-color: #FF6B35; }
+
+        /* --- BACKGROUNDS --- */
+        #tech-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .matrix-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--hologram-grid); background-size: 50px 50px; animation: matrix 20s linear infinite; opacity: 0.1; z-index: -2; pointer-events: none; }
+
+        /* --- UI COMPONENTS --- */
+        .neon-button { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
+        .neon-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
+        .neon-button:hover::before { left: 100%; }
+        .neon-button:hover { border-color: #00D4AA; box-shadow: 0 0 20px rgba(0, 212, 170, 0.3); text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+
+        .glitch-text { position: relative; display: inline-block; }
+        .glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.8; }
+        .glitch-text::before { color: #FF2E93; z-index: -1; animation: glitch-1 2s infinite linear alternate-reverse; }
+        .glitch-text::after { color: #3D7FFF; z-index: -2; animation: glitch-2 3s infinite linear alternate-reverse; }
+        @keyframes glitch-1 { 0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); } 100% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); } }
+        @keyframes glitch-2 { 0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, 1px); } 100% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, -1px); } }
+
+        .hologram-card { background: rgba(19, 20, 31, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hologram-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #00D4AA, transparent); animation: scan 3s linear infinite; opacity: 0; }
+        .hologram-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 212, 170, 0.15); border-color: rgba(0, 212, 170, 0.3); }
+        .hologram-card:hover::after { opacity: 1; }
+
+        /* LOGO */
+        .quantum-loader { width: 34px; height: 34px; position: relative; flex-shrink: 0; }
+        .quantum-loader::after { content: ''; position: absolute; inset: 0px; border-radius: 50%; border: 2px solid transparent; border-top-color: #FF6B35; border-right-color: #00D4AA; animation: spin-cw 3s linear infinite; box-shadow: 0 0 10px rgba(255, 107, 53, 0.2); }
+        .quantum-loader::before { content: ''; position: absolute; inset: 7px; border-radius: 50%; border: 2px solid transparent; border-top-color: #3D7FFF; border-left-color: #FF2E93; animation: spin-ccw 1.5s linear infinite; box-shadow: 0 0 5px rgba(61, 127, 255, 0.3); }
+        @keyframes spin-cw { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spin-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+        .text-gradient { background: linear-gradient(to right, #FF6B35, #00D4AA, #3D7FFF); -webkit-background-clip: text; color: transparent; }
+        @media(max-width: 768px) { .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- CURSOR -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- BACKGROUNDS -->
+    <div class="matrix-overlay"></div>
+    <canvas id="tech-bg"></canvas>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobilePortal" class="fixed inset-0 z-[60] bg-dark/95 backdrop-blur-xl hidden flex-col items-center justify-center p-8 transition-opacity duration-300">
+        <button id="closePortal" class="absolute top-8 right-8 p-3 rounded-xl border border-white/10 hover:border-neon-pink">
+            <i data-lucide="x" class="w-6 h-6 text-white"></i>
+        </button>
+        <div class="space-y-8 text-center">
+            <a href="index.html" class="block text-4xl font-space font-bold uppercase hover:text-secondary glitch-text" data-text="HOME">HOME</a>
+            <a href="about.html" class="block text-4xl font-space font-bold uppercase hover:text-accent glitch-text" data-text="VISION">VISION</a>
+            <a href="#openings" class="block text-4xl font-space font-bold uppercase hover:text-electric-blue glitch-text" data-text="OPENINGS">OPENINGS</a>
+            <a href="#contact" class="block text-4xl font-space font-bold uppercase hover:text-neon-pink glitch-text" data-text="CONTACT">CONTACT</a>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 group" data-hover>
+                <div class="quantum-loader"></div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-space font-black tracking-tighter uppercase text-white">Lead<span class="text-secondary">Spark</span></span>
+                    <span class="text-[8px] font-bold tracking-[0.3em] text-accent uppercase animate-pulse">SYSTEM ONLINE</span>
+                </div>
+            </a>
+            
+            <div class="hidden lg:flex space-x-6">
+                <a href="index.html" class="neon-button px-5 py-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white group" data-hover>
+                    <span class="flex items-center space-x-2"><span>// HOME</span></span>
+                </a>
+                <a href="about.html" class="neon-button px-5 py-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white group" data-hover>
+                    <span class="flex items-center space-x-2"><span>// VISION</span></span>
+                </a>
+                <a href="#openings" class="neon-button px-5 py-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white group" data-hover>
+                    <span class="flex items-center space-x-2"><span>// JOBS</span></span>
+                </a>
+                <a href="#contact" class="neon-button px-6 py-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white border-accent group" data-hover>
+                    <span class="flex items-center space-x-2"><i data-lucide="zap" class="w-3 h-3 text-secondary"></i><span>IGNITION</span></span>
+                </a>
+            </div>
+
+            <button id="openPortal" class="lg:hidden p-2 border border-white/10 rounded-lg" data-hover>
+                <i data-lucide="menu" class="w-6 h-6 text-white"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="pt-40 pb-20 px-6 relative z-10">
+        <div class="container mx-auto text-center">
+            <div class="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-8 backdrop-blur-md">
+                <div class="w-2 h-2 rounded-full bg-neon-pink animate-pulse"></div>
+                <span class="text-xs font-bold tracking-[0.2em] text-white uppercase">RECRUITING VISIONARIES</span>
+            </div>
+            <h1 class="text-5xl md:text-8xl font-space font-black mb-8 leading-tight">
+                COMPILE <span class="text-gradient">THE FUTURE</span> <br>
+                <span class="glitch-text text-white opacity-80" data-text="RUN THE WORLD">RUN THE WORLD</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                We are looking for the architects of the next digital age. If you dream in code, design in quantum leaps, and refuse to accept the impossible, your console is waiting.
+            </p>
+        </div>
+    </header>
+
+    <!-- CULTURE SECTION -->
+    <section class="py-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-space font-bold mb-6">The Visionary <span class="text-secondary">Protocol</span></h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        LeadSpark isn't just a workplace; it's a launchpad. We empower visionaries by removing the red tape found in traditional corporations. Here, your rank doesn't matter—your code, your designs, and your ideas do.
+                    </p>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        We operate on a <strong>"Remote-First, Human-Centric"</strong> philosophy. We trust you to manage your time and output. In return, we provide the resources, mentorship, and freedom to build legacy-defining projects.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="hologram-card px-6 py-3 rounded-lg text-center w-full">
+                            <span class="block text-2xl font-bold text-accent">100%</span>
+                            <span class="text-xs text-gray-500 uppercase">Remote</span>
+                        </div>
+                        <div class="hologram-card px-6 py-3 rounded-lg text-center w-full">
+                            <span class="block text-2xl font-bold text-electric-blue">Unlimited</span>
+                            <span class="text-xs text-gray-500 uppercase">Growth</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hologram-card p-2 rounded-2xl rotate-1 hover:rotate-0 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" alt="Team Collaboration" class="rounded-xl w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPEN POSITIONS (MISSION BOARD) -->
+    <section id="openings" class="py-24 bg-dark-card/30 border-y border-white/5 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-space font-bold mb-4">Active <span class="text-electric-blue">Nodes</span></h2>
+                <p class="text-gray-400">Current opportunities to join the network.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Job 1 -->
+                <div class="hologram-card p-8 rounded-2xl group flex flex-col justify-between h-full" data-hover>
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-white group-hover:text-secondary transition-colors">Quantum Architect</h3>
+                            <span class="bg-secondary/20 text-secondary text-xs px-3 py-1 rounded-full border border-secondary/20">Engineering</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            Lead the development of our core algorithmic frameworks. Requires deep knowledge of Next.js, Node.js, and high-performance computing.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">Full Remote</span>
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">Senior Level</span>
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">$120k - $160k</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="neon-button py-3 text-center text-xs font-bold uppercase tracking-widest text-white group-hover:border-secondary">Initialize Application</a>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="hologram-card p-8 rounded-2xl group flex flex-col justify-between h-full" data-hover>
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-white group-hover:text-accent transition-colors">Interface Visionary</h3>
+                            <span class="bg-accent/20 text-accent text-xs px-3 py-1 rounded-full border border-accent/20">Design</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            Create immersive, futuristic UI/UX that feels like magic. Proficiency in Figma, 3D (Spline/Three.js), and motion design required.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">Full Remote</span>
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">Mid-Senior</span>
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">$90k - $130k</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="neon-button py-3 text-center text-xs font-bold uppercase tracking-widest text-white group-hover:border-accent">Initialize Application</a>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="hologram-card p-8 rounded-2xl group flex flex-col justify-between h-full" data-hover>
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-white group-hover:text-neon-pink transition-colors">Growth Alchemist</h3>
+                            <span class="bg-neon-pink/20 text-neon-pink text-xs px-3 py-1 rounded-full border border-neon-pink/20">Marketing</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            Experiment, analyze, and scale. Use data-driven strategies to hack growth for our global client base. AI tools proficiency is a must.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">Full Remote</span>
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">Performance Based</span>
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">$80k + Commission</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="neon-button py-3 text-center text-xs font-bold uppercase tracking-widest text-white group-hover:border-neon-pink">Initialize Application</a>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="hologram-card p-8 rounded-2xl group flex flex-col justify-between h-full" data-hover>
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-white group-hover:text-cyber-yellow transition-colors">Neural Net Trainer</h3>
+                            <span class="bg-cyber-yellow/20 text-cyber-yellow text-xs px-3 py-1 rounded-full border border-cyber-yellow/20">AI / ML</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            Fine-tune LLMs for specific business verticals. Python, PyTorch, and a deep understanding of prompt engineering required.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">Full Remote</span>
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">Contract</span>
+                            <span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-500">Competitive Hourly</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="neon-button py-3 text-center text-xs font-bold uppercase tracking-widest text-white group-hover:border-cyber-yellow">Initialize Application</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS (SYSTEM UPGRADES) -->
+    <section class="py-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-space font-bold mb-4">System <span class="text-gradient">Upgrades</span></h2>
+                <p class="text-gray-400">Standard issue equipment for all crew members.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center group" data-hover>
+                    <div class="w-16 h-16 mx-auto bg-dark border border-white/10 rounded-full flex items-center justify-center mb-4 group-hover:border-secondary transition-all">
+                        <i data-lucide="globe" class="text-secondary w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-bold text-white">Work From Anywhere</h4>
+                </div>
+                <div class="text-center group" data-hover>
+                    <div class="w-16 h-16 mx-auto bg-dark border border-white/10 rounded-full flex items-center justify-center mb-4 group-hover:border-accent transition-all">
+                        <i data-lucide="heart-pulse" class="text-accent w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-bold text-white">Full Health Coverage</h4>
+                </div>
+                <div class="text-center group" data-hover>
+                    <div class="w-16 h-16 mx-auto bg-dark border border-white/10 rounded-full flex items-center justify-center mb-4 group-hover:border-electric-blue transition-all">
+                        <i data-lucide="monitor" class="text-electric-blue w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-bold text-white">Latest Hardware</h4>
+                </div>
+                <div class="text-center group" data-hover>
+                    <div class="w-16 h-16 mx-auto bg-dark border border-white/10 rounded-full flex items-center justify-center mb-4 group-hover:border-neon-pink transition-all">
+                        <i data-lucide="trending-up" class="text-neon-pink w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-bold text-white">Equity & Profit Share</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / APPLY -->
+    <section id="contact" class="py-24 relative z-10 bg-dark-card/30 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-space font-bold mb-6">Ready to <span class="text-neon-pink">Initialize?</span></h2>
+                <p class="text-gray-400 mb-10">
+                    Send your portfolio, GitHub, or just a hello. We read every transmission.
+                </p>
+                
+                <form class="space-y-6 text-left hologram-card p-8 rounded-2xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">Codename / Name</label>
+                            <input type="text" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">Comms Link / Email</label>
+                            <input type="email" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">Target Position</label>
+                        <select class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors">
+                            <option>Quantum Architect (Engineering)</option>
+                            <option>Interface Visionary (Design)</option>
+                            <option>Growth Alchemist (Marketing)</option>
+                            <option>Neural Net Trainer (AI)</option>
+                            <option>General Application</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">Manifesto / Cover Letter</label>
+                        <textarea rows="4" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors"></textarea>
+                    </div>
+                    <button class="w-full neon-button py-4 text-white font-bold uppercase tracking-widest hover:bg-white/5" data-hover>
+                        Transmit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark border-t border-white/10 pt-16 pb-8 relative z-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 mb-6" data-hover>
+                        <div class="quantum-loader"></div>
+                        <span class="text-xl font-space font-bold text-white">LeadSpark</span>
+                    </a>
+                    <p class="text-gray-500 text-sm">International digital performance agency.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Protocols</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="strategy.html" class="hover:text-accent transition-colors" data-hover>Strategy</a></li>
+                        <li><a href="development.html" class="hover:text-accent transition-colors" data-hover>Development</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Network</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="about.html" class="hover:text-accent transition-colors" data-hover>About</a></li>
+                        <li><a href="careers.html" class="hover:text-accent transition-colors" data-hover>Careers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><span class="text-xs uppercase tracking-widest text-gray-600">Equal Opportunity Employer</span></li>
+                        <li><span class="text-xs uppercase tracking-widest text-gray-600">Diverse & Inclusive</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 text-center text-gray-600 text-sm">
+                &copy; 2025 LeadSpark Systems. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC CORE -->
+    <script>
+        // 1. Icon Initialization
+        lucide.createIcons();
+
+        // 2. Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        
+        window.addEventListener('mousemove', e => {
+            const x = e.clientX;
+            const y = e.clientY;
+            cursorDot.style.transform = `translate(${x - 4}px, ${y - 4}px)`;
+            cursorRing.animate({ transform: `translate(${x - 20}px, ${y - 20}px)` }, { duration: 500, fill: "forwards" });
+        });
+
+        // Hover Effect
+        document.querySelectorAll('[data-hover]').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        // 3. Mobile Portal
+        const portal = document.getElementById('mobilePortal');
+        document.getElementById('openPortal').onclick = () => { portal.classList.remove('hidden'); portal.classList.add('flex'); };
+        document.getElementById('closePortal').onclick = () => { portal.classList.add('hidden'); portal.classList.remove('flex'); };
+
+        // 4. Quantum Canvas Background
+        const initCanvas = () => {
+            const canvas = document.getElementById('tech-bg');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w, h;
+            let particles = [];
+            
+            const colors = [{r:255, g:107, b:53}, {r:0, g:212, b:170}, {r:61, g:127, b:255}];
+
+            const resize = () => {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+                particles = Array(50).fill().map(() => ({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                }));
+            };
+
+            const animate = () => {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach((p, i) => {
+                    p.x += p.vx; p.y += p.vy;
+                    if(p.x < 0 || p.x > w) p.vx *= -1;
+                    if(p.y < 0 || p.y > h) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                    ctx.fillStyle = `rgba(${p.color.r},${p.color.g},${p.color.b},0.6)`;
+                    ctx.fill();
+
+                    particles.slice(i+1).forEach(p2 => {
+                        const dx = p.x - p2.x;
+                        const dy = p.y - p2.y;
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        if(dist < 150) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(255,255,255,${0.1 * (1 - dist/150)})`;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    });
+                });
+                requestAnimationFrame(animate);
+            };
+
+            window.addEventListener('resize', resize);
+            resize();
+            animate();
+        };
+
+        // 5. Init
+        document.addEventListener('DOMContentLoaded', () => {
+            initCanvas();
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Reveal Sections
+            const reveal = (el) => {
+                gsap.from(el, {
+                    scrollTrigger: { trigger: el, start: "top 85%" },
+                    y: 50, opacity: 0, duration: 1, ease: "power3.out"
+                });
+            };
+            
+            document.querySelectorAll('section').forEach(reveal);
+        });
+    </script>
+</body>
+</html>
