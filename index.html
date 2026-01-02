@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
@@ -12,7 +13,7 @@
   <link rel="canonical" href="https://leadspark.online/" />
 
   <meta property="og:title" content="LeadSpark  – Ignite Your Growth" />
-  <meta property="og:description" content="Full‑stack web developer helping businesses launch high‑converting calculators, SaaS‑style tools and SEO‑optimized websites.” />
+  <meta property="og:description" content="Lead generation, AI chatbot deployment, customer engagement, lead nurturing, sales automation, CRM integration, personalized marketing, 24/7 lead capture, analytics insights, multi-language support, ad campaign management, data centralization, conversion optimization, WhatsApp/Zapier integration, performance tracking" />
   <meta property="og:url" content="https://leadspark.online/" />
   <meta property="og:type" content="website" />
 
@@ -52,7 +53,9 @@
                         'float': 'float 6s ease-in-out infinite',
                         'scan': 'scan 4s linear infinite',
                         'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
-                        'matrix': 'matrix 20s linear infinite'
+                        'matrix': 'matrix 20s linear infinite',
+                        'slideDown': 'slideDown 0.3s ease-out',
+                        'slideUp': 'slideUp 0.3s ease-out'
                     },
                     keyframes: {
                         float: {
@@ -70,6 +73,14 @@
                         matrix: {
                             '0%': { backgroundPosition: '0% 0%' },
                             '100%': { backgroundPosition: '0% 100%' }
+                        },
+                        slideDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px) scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                            '100%': { opacity: '0', transform: 'translateY(-10px) scale(0.95)' }
                         }
                     }
                 }
@@ -157,26 +168,38 @@
         @keyframes glitch-1 { 0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); } 100% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); } }
         @keyframes glitch-2 { 0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, 1px); } 100% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, -1px); } }
 
-        /* Hologram Card */
+        /* CRYSTAL CLEAR HOLOGRAM CARD */
         .hologram-card {
-            background: rgba(19, 20, 31, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(19, 20, 31, 0.15); /* Increased transparency */
+            backdrop-filter: blur(12px); /* Increased blur for glass effect */
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05); /* More transparent border */
             position: relative; overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 
+                0 4px 20px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.02);
         }
         .hologram-card::after {
             content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
             background: linear-gradient(90deg, transparent, #00D4AA, transparent);
             animation: scan 3s linear infinite; opacity: 0;
         }
-        .hologram-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 212, 170, 0.15); border-color: rgba(0, 212, 170, 0.3); }
+        .hologram-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 
+                0 20px 40px rgba(0, 212, 170, 0.1),
+                inset 0 0 0 1px rgba(0, 212, 170, 0.1);
+            border-color: rgba(0, 212, 170, 0.15); 
+            background: rgba(19, 20, 31, 0.25);
+        }
         .hologram-card:hover::after { opacity: 1; }
 
         /* Eff8 Portfolio Card */
         .eff8-card {
             position: relative; overflow: hidden; border-radius: 1rem; height: 400px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); /* More transparent shadow */
+            border: 1px solid rgba(255,255,255,0.03); /* More transparent border */
             cursor: pointer;
         }
         .eff8-card img {
@@ -186,7 +209,7 @@
         .eff8-card:hover img { transform: scale(1.15); filter: contrast(1.1); }
         .eff8-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(10,11,20,0.95), rgba(10,11,20,0.7), transparent);
+            background: linear-gradient(to top, rgba(10,11,20,0.85), rgba(10,11,20,0.4), transparent); /* More transparent gradient */
             display: flex; flex-direction: column; justify-content: flex-end;
             padding: 2rem; opacity: 0; transform: translateY(20px);
             transition: all 0.4s ease-out;
@@ -196,8 +219,12 @@
             position: absolute; bottom: 20px; left: 20px;
             transition: opacity 0.3s ease;
             text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            background: rgba(10, 11, 20, 0.3); /* More transparent background */
+            backdrop-filter: blur(5px);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .eff8-card:hover .eff8-static-title { opacity: 0; }
 
         /* --- FIXED LOGO CSS --- */
         .quantum-loader {
@@ -244,13 +271,126 @@
         .slider-container { overflow: hidden; position: relative; }
         .slider-track { display: flex; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
         .slider-slide { flex: 0 0 100%; padding: 0 1rem; }
-        .slider-dot { width: 8px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 50%; cursor: pointer; transition: all 0.3s; }
+        .slider-dot { width: 8px; height: 8px; background: rgba(255,255,255,0.1); border-radius: 50%; cursor: pointer; transition: all 0.3s; }
         .slider-dot.active { width: 24px; background: #00D4AA; border-radius: 4px; box-shadow: 0 0 10px #00D4AA; }
 
         /* Gradient Text */
         .text-gradient { background: linear-gradient(to right, #FF6B35, #00D4AA, #3D7FFF); -webkit-background-clip: text; color: transparent; }
 
-        @media(max-width: 768px) { .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } }
+        /* --- CRYSTAL CLEAR MOBILE MENU --- */
+        #mobilePortal {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 60;
+            width: 280px;
+            background: rgba(19, 20, 31, 0.25); /* Very transparent */
+            backdrop-filter: blur(25px); /* Increased blur */
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.06); /* More transparent border */
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+            display: none;
+            animation: slideDown 0.3s ease-out;
+            transform-origin: top right;
+        }
+
+        #mobilePortal.show {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #mobilePortal.hide {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
+        #closePortal {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03); /* More transparent */
+            border: 1px solid rgba(255, 255, 255, 0.06); /* More transparent */
+            border-radius: 8px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        #closePortal:hover {
+            background: rgba(255, 107, 53, 0.15); /* More transparent */
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        #mobilePortal .menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        #mobilePortal .menu-links a {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 10px 12px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            color: white;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.02); /* More transparent */
+            border: 1px solid rgba(255, 255, 255, 0.03); /* More transparent */
+        }
+
+        #mobilePortal .menu-links a:hover {
+            background: rgba(255, 107, 53, 0.1); /* More transparent */
+            color: #FF6B35;
+            padding-left: 16px;
+            border-color: rgba(255, 107, 53, 0.2);
+            transform: translateX(5px);
+        }
+
+        /* More transparent section backgrounds */
+        .transparent-section {
+            background: rgba(10, 11, 20, 0.1) !important;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Transparent form inputs */
+        .transparent-input {
+            background: rgba(19, 20, 31, 0.2) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06) !important;
+        }
+
+        /* Transparent navbar */
+        .navbar-transparent {
+            background: rgba(10, 11, 20, 0.15) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+        }
+
+        @media(max-width: 768px) { 
+            .cursor-dot, .cursor-ring { display: none; } 
+            body { cursor: auto; } 
+        }
+
+        @media (max-width: 640px) {
+            #mobilePortal {
+                width: 240px;
+                top: 70px;
+                right: 10px;
+                background: rgba(19, 20, 31, 0.3); /* Slightly more opaque on mobile */
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -262,22 +402,26 @@
     <!-- BACKGROUNDS -->
     <div class="matrix-overlay"></div>
     <canvas id="tech-bg"></canvas>
-    <!-- MOBILE MENU OVERLAY -->
-    <div id="mobilePortal" class="fixed inset-0 z-[60] bg-dark/95 backdrop-blur-xl hidden flex-col items-center justify-center p-8 transition-opacity duration-300">
-        <button id="closePortal" class="absolute top-8 right-8 p-3 rounded-xl border border-white/10 hover:border-neon-pink">
-            <i data-lucide="x" class="w-6 h-6 text-white"></i>
+
+    <!-- CRYSTAL CLEAR MOBILE MENU -->
+    <div id="mobilePortal" class="hologram-card">
+        <button id="closePortal" class="neon-button">
+            <i data-lucide="x" class="w-4 h-4 text-white"></i>
         </button>
-        <div class="space-y-8 text-center">
-            <a href="#home" class="block text-4xl font-space font-bold uppercase hover:text-secondary glitch-text" data-text="HOME">HOME</a>
-            <a href="#services" class="block text-4xl font-space font-bold uppercase hover:text-accent glitch-text" data-text="SERVICES">SERVICES</a>
-            <a href="#portfolio" class="block text-4xl font-space font-bold uppercase hover:text-electric-blue glitch-text" data-text="PROJECTS">PROJECTS</a>
-            <a href="#blog" class="block text-4xl font-space font-bold uppercase hover:text-cyber-yellow glitch-text" data-text="INSIGHTS">INSIGHTS</a>
-            <a href="#contact" class="block text-4xl font-space font-bold uppercase hover:text-neon-pink glitch-text" data-text="CONTACT">CONTACT</a>
+        <div class="menu-links">
+            <a href="#home" class="glitch-text" data-text="HOME">HOME</a>
+            <a href="#services" class="glitch-text" data-text="SERVICES">SERVICES</a>
+            <a href="#portfolio" class="glitch-text" data-text="PROJECTS">PROJECTS</a>
+            <a href="#blog" class="glitch-text" data-text="INSIGHTS">INSIGHTS</a>
+            <a href="#contact" class="glitch-text flex items-center gap-2 text-accent" data-text="CONTACT">
+                <i data-lucide="zap" class="w-3 h-3"></i>
+                <span>CONTACT</span>
+            </a>
         </div>
     </div>
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+    <nav class="fixed w-full z-50 navbar-transparent backdrop-blur-xl border-b border-white/5 px-6 py-4">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#home" class="flex items-center space-x-3 group" data-hover>
                 <div class="quantum-loader"></div>
@@ -300,12 +444,12 @@
                 <a href="#blog" class="neon-button px-5 py-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white group" data-hover>
                     <span class="flex items-center space-x-2"><span>INSIGHTS</span></span>
                 </a>
-                <a href="#contact" class="neon-button px-6 py-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white border-accent group" data-hover>
+                <a href="#contact" class="neon-button px-6 py-2 text-[10px] font-bold tracking-[0.2em] uppercase text-white border-accent/30 group" data-hover>
                     <span class="flex items-center space-x-2"><i data-lucide="zap" class="w-3 h-3 text-secondary"></i><span>IGNITION</span></span>
                 </a>
             </div>
 
-            <button id="openPortal" class="lg:hidden p-2 border border-white/10 rounded-lg" data-hover>
+            <button id="openPortal" class="lg:hidden p-2 border border-white/10 rounded-lg neon-button" data-hover>
                 <i data-lucide="menu" class="w-6 h-6 text-white"></i>
             </button>
         </div>
@@ -360,7 +504,7 @@
     </section>
 
     <!-- SERVICES SECTION -->
-    <section id="services" class="py-24 relative z-10 border-t border-white/5 bg-dark/30">
+    <section id="services" class="py-24 relative z-10 border-t border-white/5 transparent-section">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-space font-bold mb-4">Core <span class="text-gradient">Protocols</span></h2>
@@ -415,7 +559,7 @@
     </section>
 
     <!-- PORTFOLIO (INTEGRATED PROJECTS) -->
-    <section id="portfolio" class="py-24 relative z-10">
+    <section id="portfolio" class="py-24 relative z-10 transparent-section">
         <div class="container mx-auto px-6">
             <div class="mb-16 flex flex-col md:flex-row justify-between items-end">
                 <div>
@@ -535,7 +679,7 @@ Before It Arrives</p>
     </section>
 
     <!-- TESTIMONIALS SLIDER -->
-    <section id="reviews" class="py-24 relative z-10 bg-dark-card/30">
+    <section id="reviews" class="py-24 relative z-10 transparent-section">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-space font-bold mb-12 text-center">User <span class="text-gradient">Logs</span></h2>
 
@@ -624,7 +768,7 @@ Before It Arrives</p>
     </section>
 
     <!-- BLOG SECTION -->
-    <section id="blog" class="py-24 relative z-10">
+    <section id="blog" class="py-24 relative z-10 transparent-section">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-end mb-12">
                 <div>
@@ -637,10 +781,8 @@ Before It Arrives</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Post 1: AI & Data -->
-                <!-- Added onclick event to redirect to post-1.html -->
-                <article class="hologram-card rounded-2xl overflow-hidden group cursor-pointer" data-hover onclick="window.location.href='post-1.html'">
+                <!-- Post 1 -->
+                <article class="hologram-card rounded-2xl overflow-hidden group" data-hover>
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-accent border border-white/10">AI & Data</div>
@@ -649,13 +791,11 @@ Before It Arrives</p>
                         <div class="flex gap-4 text-xs text-gray-400 mb-3"><span>Oct 24</span><span>5 min read</span></div>
                         <h3 class="text-xl font-bold mb-3 group-hover:text-secondary transition-colors text-white">The Future of AI in Marketing</h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-2">How machine learning algorithms are reshaping user acquisition strategies.</p>
-                        <span class="text-accent text-xs font-bold uppercase tracking-wider flex items-center gap-2">Read Protocol <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
                     </div>
                 </article>
 
-                <!-- Post 2: DevOps -->
-                <!-- Added onclick event to redirect to post-2.html -->
-                <article class="hologram-card rounded-2xl overflow-hidden group cursor-pointer" data-hover onclick="window.location.href='post-2.html'">
+                <!-- Post 2 -->
+                <article class="hologram-card rounded-2xl overflow-hidden group" data-hover>
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-secondary border border-white/10">DevOps</div>
@@ -664,13 +804,11 @@ Before It Arrives</p>
                         <div class="flex gap-4 text-xs text-gray-400 mb-3"><span>Oct 18</span><span>8 min read</span></div>
                         <h3 class="text-xl font-bold mb-3 group-hover:text-secondary transition-colors text-white">Optimizing Core Web Vitals</h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-2">Technical strategies to improve LCP and CLS scores for better search rankings.</p>
-                        <span class="text-secondary text-xs font-bold uppercase tracking-wider flex items-center gap-2">Read Protocol <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
                     </div>
                 </article>
 
-                <!-- Post 3: Design -->
-                <!-- Added onclick event to redirect to post-3.html -->
-                <article class="hologram-card rounded-2xl overflow-hidden group cursor-pointer" data-hover onclick="window.location.href='post-3.html'">
+                <!-- Post 3 -->
+                <article class="hologram-card rounded-2xl overflow-hidden group" data-hover>
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-white border border-white/10">Design</div>
@@ -679,13 +817,11 @@ Before It Arrives</p>
                         <div class="flex gap-4 text-xs text-gray-400 mb-3"><span>Oct 12</span><span>4 min read</span></div>
                         <h3 class="text-xl font-bold mb-3 group-hover:text-secondary transition-colors text-white">Psychology of UX</h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-2">Using cognitive biases to create more intuitive and high-converting digital interfaces.</p>
-                        <span class="text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2">Read Protocol <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
                     </div>
                 </article>
 
-                <!-- Post 4: Blockchain -->
-                <!-- Added onclick event to redirect to post-4.html -->
-                <article class="hologram-card rounded-2xl overflow-hidden group cursor-pointer" data-hover onclick="window.location.href='post-4.html'">
+                <!-- Post 4 -->
+                <article class="hologram-card rounded-2xl overflow-hidden group" data-hover>
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-electric-blue border border-white/10">Blockchain</div>
@@ -694,13 +830,11 @@ Before It Arrives</p>
                         <div class="flex gap-4 text-xs text-gray-400 mb-3"><span>Oct 05</span><span>6 min read</span></div>
                         <h3 class="text-xl font-bold mb-3 group-hover:text-secondary transition-colors text-white">Quantum Encryption</h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-2">Preparing your digital infrastructure for the post-quantum cryptography era.</p>
-                        <span class="text-electric-blue text-xs font-bold uppercase tracking-wider flex items-center gap-2">Read Protocol <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
                     </div>
                 </article>
 
-                <!-- Post 5: Sustainability -->
-                <!-- Added onclick event to redirect to post-5.html -->
-                <article class="hologram-card rounded-2xl overflow-hidden group cursor-pointer" data-hover onclick="window.location.href='post-5.html'">
+                <!-- Post 5 -->
+                <article class="hologram-card rounded-2xl overflow-hidden group" data-hover>
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-neon-pink border border-white/10">Sustainability</div>
@@ -709,13 +843,11 @@ Before It Arrives</p>
                         <div class="flex gap-4 text-xs text-gray-400 mb-3"><span>Sep 28</span><span>3 min read</span></div>
                         <h3 class="text-xl font-bold mb-3 group-hover:text-secondary transition-colors text-white">Green Coding</h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-2">Reducing carbon footprint through efficient algorithm design and server management.</p>
-                        <span class="text-neon-pink text-xs font-bold uppercase tracking-wider flex items-center gap-2">Read Protocol <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
                     </div>
                 </article>
 
-                <!-- Post 6: VR/AR -->
-                <!-- Added onclick event to redirect to post-6.html -->
-                <article class="hologram-card rounded-2xl overflow-hidden group cursor-pointer" data-hover onclick="window.location.href='post-6.html'">
+                <!-- Post 6 -->
+                <article class="hologram-card rounded-2xl overflow-hidden group" data-hover>
                     <div class="h-48 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute top-4 left-4 bg-dark/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-cyber-yellow border border-white/10">VR/AR</div>
@@ -724,15 +856,14 @@ Before It Arrives</p>
                         <div class="flex gap-4 text-xs text-gray-400 mb-3"><span>Sep 15</span><span>7 min read</span></div>
                         <h3 class="text-xl font-bold mb-3 group-hover:text-secondary transition-colors text-white">Neural Interfaces</h3>
                         <p class="text-gray-400 text-sm mb-4 line-clamp-2">Designing user experiences for the next generation of brain-computer interfaces.</p>
-                        <span class="text-cyber-yellow text-xs font-bold uppercase tracking-wider flex items-center gap-2">Read Protocol <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
                     </div>
                 </article>
-
             </div>
         </div>
     </section>
+
     <!-- STATS -->
-    <section class="py-20 border-t border-white/5 bg-dark-card/50 relative z-10">
+    <section class="py-20 border-t border-white/5 transparent-section relative z-10">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div data-hover>
@@ -757,7 +888,7 @@ Before It Arrives</p>
 <!-- CONTACT SECTION -->
 <section id="contact" class="py-24 relative z-10">
     <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto hologram-card rounded-3xl p-10 md:p-16 border border-white/10 bg-gradient-to-b from-dark-card to-transparent">
+        <div class="max-w-4xl mx-auto hologram-card rounded-3xl p-10 md:p-16 border border-white/10 bg-gradient-to-b from-dark-card/20 to-transparent">
             <div class="text-center mb-10">
                 <h2 class="text-4xl font-space font-bold mb-4">Initialize <span class="text-neon-pink">Ignition</span></h2>
                 <p class="text-gray-400">Establish a secure connection with our team.</p>
@@ -774,16 +905,16 @@ Before It Arrives</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Name Field -->
                     <input type="text" name="name" placeholder="ID / NAME" required 
-                        class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover>
+                        class="w-full transparent-input rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover>
                     
                     <!-- Email Field (Linked to techinsightx@gmail.com via Formspree) -->
                     <input type="email" name="email" placeholder="GMAIL" required 
-                        class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover>
+                        class="w-full transparent-input rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover>
                 </div>
                 
                 <!-- Message Field -->
                 <textarea name="message" rows="4" placeholder="TRANSMISSION DATA" required 
-                    class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover></textarea>
+                    class="w-full transparent-input rounded-lg px-4 py-3 text-white focus:border-accent focus:outline-none transition-colors" data-hover></textarea>
                 
                 <!-- Submit Button -->
                 <button type="submit" id="submitBtn" class="w-full neon-button py-4 text-white font-bold uppercase tracking-widest hover:bg-white/5" data-hover>
@@ -871,7 +1002,7 @@ Before It Arrives</p>
     form.addEventListener("submit", handleSubmit);
 </script>
     <!-- FOOTER -->
-<footer class="bg-dark border-t border-white/10 pt-16 pb-8 relative z-10">
+<footer class="bg-dark/30 border-t border-white/10 pt-16 pb-8 relative z-10 backdrop-blur-sm">
   <div class="container mx-auto px-6">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
 
@@ -934,7 +1065,7 @@ Before It Arrives</p>
           <a href="https://github.com/techinsightx" target="_blank"
              class="hover:text-accent transition-colors" aria-label="GitHub">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2.05c-3.22.7-3.9-1.55-3.9-1.55c-.53-1.34-1.3-1.7-1.3-1.7c-1.06-.72.08-.71.08-.71c1.17.08 1.78 1.2 1.78 1.2c1.04 1.78 2.72 1.26 3.39.96c.1-.75.4-1.26.73-1.55c-2.57-.3-5.28-1.28-5.28-5.72c0-1.26.45-2.29 1.2-3.1c-.12-.3-.52-1.52.11-3.17c0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18c.63 1.65.23 2.87.11 3.17c.75.81 1.2 1.84 1.2 3.1c0 4.45-2.72 5.42-5.3 5.71c.41.35.78 1.05.78 2.12v3.14c0 .31.21.66.8.55A11.5 11.5 0 0 0 12 .5Z"/>
+              <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2.05c-3.22.7-3.9-1.55-3.9-1.55c-.53-1.34-1.3-1.7-1.3-1.7c-1.06-.72.08-.71.08-.71c1.17.08 1.78 1.2 1.78 1.2c1.04 1.78 2.72 1.26 3.39.96c.1-.75.4-1.26.73-1.55c-2.57-.3-5.28-1.28-5.28-5.72c0-1.26.45-2.29 1.2-3.1c-.12-.3-.52-1.52.11-3.17c0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18c.63 1.65.23 2.87.11 3.17c.75.81 1.2 1.84 1.2 3.1c0 4.45-2.72 5.42-5.3 5.71c.41.35.78 1.05.78 2.12v3.14c0 .31.21.66.80.55A11.5 11.5 0 0 0 12 .5Z"/>
             </svg>
           </a>
 
@@ -977,16 +1108,75 @@ Before It Arrives</p>
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
 
-        // 3. Mobile Portal
+        // 3. Mobile Portal (Fixed Small Menu)
         const portal = document.getElementById('mobilePortal');
-        document.getElementById('openPortal').onclick = () => {
-            portal.classList.remove('hidden');
-            portal.classList.add('flex');
+        const openBtn = document.getElementById('openPortal');
+        const closeBtn = document.getElementById('closePortal');
+        let isMenuOpen = false;
+
+        // Function to open menu
+        function openMenu() {
+            if (!isMenuOpen) {
+                portal.classList.remove('hide');
+                portal.classList.add('show');
+                isMenuOpen = true;
+                // Update menu icon
+                const menuIcon = openBtn.querySelector('i');
+                menuIcon.setAttribute('data-lucide', 'x');
+                lucide.createIcons();
+            }
+        }
+
+        // Function to close menu
+        function closeMenu() {
+            if (isMenuOpen) {
+                portal.classList.remove('show');
+                portal.classList.add('hide');
+                // Wait for animation to complete before hiding
+                setTimeout(() => {
+                    portal.classList.remove('hide');
+                    isMenuOpen = false;
+                }, 300);
+                // Update menu icon
+                const menuIcon = openBtn.querySelector('i');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            }
+        }
+
+        // Open menu
+        openBtn.onclick = (e) => {
+            e.stopPropagation();
+            if (isMenuOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         };
-        document.getElementById('closePortal').onclick = () => {
-            portal.classList.add('hidden');
-            portal.classList.remove('flex');
-        };
+
+        // Close menu
+        closeBtn.onclick = closeMenu;
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !portal.contains(e.target) && !openBtn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Close menu on window resize (for desktop view)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024 && isMenuOpen) {
+                closeMenu();
+            }
+        });
+
+        // Close menu when clicking menu links
+        portal.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
 
         // 4. Quantum Canvas Background
         const initCanvas = () => {
@@ -1106,6 +1296,3 @@ Before It Arrives</p>
     </script>
 </body>
 </html>
-
-
-
