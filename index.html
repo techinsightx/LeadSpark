@@ -391,6 +391,29 @@
                 background: rgba(19, 20, 31, 0.3); /* Slightly more opaque on mobile */
             }
         }
+
+        /* Reviews Scrolling Animation */
+        .reviews-track-left {
+            display: flex;
+            width: max-content;
+            animation: scroll-left 40s linear infinite;
+        }
+        .reviews-track-right {
+            display: flex;
+            width: max-content;
+            animation: scroll-right 40s linear infinite;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .reviews-track-left:hover, .reviews-track-right:hover {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -470,9 +493,31 @@
                         <span class="glitch-text text-secondary" data-text="ACCELERATED">ACCELERATED</span>
                     </h1>
                     
-                    <p class="text-lg text-gray-400 mb-10 leading-relaxed max-w-xl">
-                        Full-stack <span class="text-white font-bold">web developer </span>building high‑converting calculators, SaaS & marketing tools for creators and startups.
-                  </p>
+                    <div class="text-lg text-gray-400 mb-10 leading-relaxed max-w-xl min-h-[4.5rem] relative overflow-hidden">
+                        <div id="subheadline-container" class="relative w-full h-full">
+                            <p class="rotating-text absolute top-0 left-0 w-full opacity-100 transition-all duration-700 ease-in-out">
+                                LeadSpark helps creators and businesses grow smarter with modern digital systems.
+                            </p>
+                            <p class="rotating-text absolute top-0 left-0 w-full opacity-0 translate-y-4 transition-all duration-700 ease-in-out">
+                                We help people turn their ideas, and businesses into scalable digital growth.
+                            </p>
+                            <p class="rotating-text absolute top-0 left-0 w-full opacity-0 translate-y-4 transition-all duration-700 ease-in-out">
+                                Empowering Creators and businesses with tools that drive real growth.
+                            </p>
+                            <p class="rotating-text absolute top-0 left-0 w-full opacity-0 translate-y-4 transition-all duration-700 ease-in-out">
+                                Building digital systems that help people grow their business, brand & impact worldwide.
+                            </p>
+                            <p class="rotating-text absolute top-0 left-0 w-full opacity-0 translate-y-4 transition-all duration-700 ease-in-out">
+                                LeadSpark partners with people and businesses to create valuable digital growth.
+                            </p>
+                            <p class="rotating-text absolute top-0 left-0 w-full opacity-0 translate-y-4 transition-all duration-700 ease-in-out">
+                                Helping individuals and businesses transform into digital growth.
+                            </p>
+                            <p class="rotating-text absolute top-0 left-0 w-full opacity-0 translate-y-4 transition-all duration-700 ease-in-out">
+                                LeadSpark is where creators and businesses unlock their next stage of growth.
+                            </p>
+                        </div>
+                    </div>
                     
                     <div class="flex flex-wrap gap-4">
                         <a href="#portfolio" class="neon-button px-8 py-4 bg-gradient-to-r from-secondary to-accent text-white font-bold uppercase tracking-widest text-sm shadow-lg hover:shadow-accent/50 transition-all" data-hover>
@@ -924,7 +969,379 @@ Build Your Digital Asset Now
             </div>
         </div>
     </section>
-<!-- CONTACT SECTION -->
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-24 relative z-10 border-t border-white/5 transparent-section overflow-hidden">
+        <div class="container mx-auto px-6 mb-12 text-center">
+            <h2 class="text-4xl font-space font-bold mb-4">Global <span class="text-gradient">Recognition</span></h2>
+            <p class="text-gray-400 max-w-xl mx-auto">Trusted by creators, educators, and businesses worldwide.</p>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Row 1: Scrolls Left -->
+            <div class="flex overflow-hidden">
+                <div class="reviews-track-left gap-6">
+                    <!-- Review Card 1 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"LeadSpark transformed our digital workflow. Their tools are military-grade and incredibly intuitive."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Cmdr. Vance</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 2 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"The ROI we achieved in just one quarter was beyond our projections. Truly a game-changer for our SaaS."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Lt. Sarah</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 3 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Exceptional UI/UX fusion. Our user retention increased by 200% after implementing LeadSpark systems."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Michael Chen</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 4 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"The automation they built for our lead generation is flawless. It runs like a 24/7 sales machine."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Lydia Cole</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 5 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Professional, scalable, and secure. LeadSpark is our go-to partner for all digital infrastructure."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Alex Thorne</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 6 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Their predictive analysis tools gave us a clear roadmap for our solar expansion. Highly recommend."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">James Miller</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Duplicates for Loop -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"LeadSpark transformed our digital workflow. Their tools are military-grade and incredibly intuitive."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Cmdr. Vance</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"The ROI we achieved in just one quarter was beyond our projections. Truly a game-changer for our SaaS."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Lt. Sarah</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Exceptional UI/UX fusion. Our user retention increased by 200% after implementing LeadSpark systems."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Michael Chen</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"The automation they built for our lead generation is flawless. It runs like a 24/7 sales machine."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Lydia Cole</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Professional, scalable, and secure. LeadSpark is our go-to partner for all digital infrastructure."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Alex Thorne</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Their predictive analysis tools gave us a clear roadmap for our solar expansion. Highly recommend."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">James Miller</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Scrolls Right -->
+            <div class="flex overflow-hidden">
+                <div class="reviews-track-right gap-6">
+                    <!-- Review Card 7 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"A true partnership. They integrated with our team and delivered a product that defined our market segment."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Sophie Chen</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 8 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Complex data visualization made simple. Their UI work is simply stunning and highly functional."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Marcus Wright</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 9 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Immersive, fast, and reliable. The new site increased our user engagement significantly."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Elena Rodriguez</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 10 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"The engineering standards are top-tier. Our platform scales effortlessly under heavy global load."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">David Kim</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 11 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"LeadSpark's approach to digital growth is unmatched. They really understand the creator economy."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Chloe Simmons</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Review Card 12 -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"The best investment we made this year. Our brand impact has gone global thanks to their systems."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Robert Flynn</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <!-- Duplicates for Loop -->
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"A true partnership. They integrated with our team and delivered a product that defined our market segment."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Sophie Chen</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Complex data visualization made simple. Their UI work is simply stunning and highly functional."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Marcus Wright</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"Immersive, fast, and reliable. The new site increased our user engagement significantly."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Elena Rodriguez</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"The engineering standards are top-tier. Our platform scales effortlessly under heavy global load."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">David Kim</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"LeadSpark's approach to digital growth is unmatched. They really understand the creator economy."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Chloe Simmons</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                    <div class="hologram-card p-6 rounded-2xl w-[350px] flex-shrink-0">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-cyber-yellow text-cyber-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4 leading-relaxed italic">"The best investment we made this year. Our brand impact has gone global thanks to their systems."</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold text-sm">Robert Flynn</span>
+                            <span class="text-[10px] text-accent font-bold tracking-tighter uppercase">Google Review</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
 <section id="contact" class="py-24 relative z-10">
     <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto hologram-card rounded-3xl p-10 md:p-16 border border-white/10 bg-gradient-to-b from-dark-card/20 to-transparent">
@@ -934,11 +1351,6 @@ Build Your Digital Asset Now
             </div>
 
             <!-- FORM START -->
-            <!-- 
-               IMPORTANT: 
-               1. Replace 'YOUR_FORMSPREE_ID' in the action URL below with the code you got from Step 1.
-               Example: https://formspree.io/f/mqkvojwl
-            -->
             <form id="quantumForm" action="https://formspree.io/f/mbdrgbel" method="POST" class="space-y-6 max-w-lg mx-auto">
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1071,7 +1483,7 @@ Build Your Digital Asset Now
         </ul>
       </div>
 
-      <!-- Social Icons (Contact replaced) -->
+      <!-- Social Icons -->
       <div>
         <h4 class="text-white font-bold mb-6">Connect</h4>
         <div class="flex items-center gap-4 text-gray-400">
@@ -1100,7 +1512,7 @@ Build Your Digital Asset Now
             </svg>
           </a>
 
-          <!-- GitHub (placeholder) -->
+          <!-- GitHub  -->
           <a href="https://github.com/techinsightx" target="_blank"
              class="hover:text-accent transition-colors" aria-label="GitHub">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -1114,7 +1526,7 @@ Build Your Digital Asset Now
     </div>
 
     <div class="border-t border-white/5 pt-8 text-center text-gray-600 text-sm">
-      &copy; 2025 LeadSpark Systems. All rights reserved.
+      &copy; 2025 leadspark.online. All rights reserved.
     </div>
   </div>
 </footer>
@@ -1331,6 +1743,32 @@ Build Your Digital Asset Now
                     onUpdate: function() { stat.innerText = Math.ceil(this.targets()[0].innerText) + (stat.nextElementSibling.innerText.includes('%') ? '%' : '+'); }
                 });
             });
+
+            // Subheadline Rotation System
+            const rotatingTexts = document.querySelectorAll('.rotating-text');
+            let currentTextIndex = 0;
+
+            function rotateSubheadline() {
+                const currentText = rotatingTexts[currentTextIndex];
+                currentText.style.opacity = '0';
+                currentText.style.transform = 'translateY(-1rem)';
+
+                currentTextIndex = (currentTextIndex + 1) % rotatingTexts.length;
+                const nextText = rotatingTexts[currentTextIndex];
+                
+                // Reset next text position before showing
+                nextText.style.transition = 'none';
+                nextText.style.transform = 'translateY(1rem)';
+                
+                // Force reflow
+                nextText.offsetHeight;
+
+                nextText.style.transition = 'all 0.7s ease-in-out';
+                nextText.style.opacity = '1';
+                nextText.style.transform = 'translateY(0)';
+            }
+
+            setInterval(rotateSubheadline, 5000);
         });
     </script>
 </body>
