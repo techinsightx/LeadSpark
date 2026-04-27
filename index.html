@@ -1804,5 +1804,81 @@ Build Your Digital Asset Now
             setInterval(rotateSubheadline, 5000);
         });
     </script>
+    <script>
+(function () {
+  const url = window.location.href;
+  const title = document.title;
+  const desc = document.querySelector("meta[name='description']")?.content || "LeadSpark - Free & Premium AI Tools";
+
+  let schema;
+
+  const isAffiliate = document.querySelector("a[href*='ref'], a[href*='aff'], a[href*='partner']");
+
+  if (isAffiliate) {
+    // 💰 Affiliate Tool
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": title,
+      "description": desc,
+      "brand": {
+        "@type": "Organization",
+        "name": "LeadSpark"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": url,
+        "priceCurrency": "USD",
+        "price": "9.99",
+        "availability": "https://schema.org/InStock"
+      }
+    };
+
+  } else if (url.includes("tool") || url.includes("generator")) {
+    // 🛠️ Own Tool
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": title,
+      "operatingSystem": "All",
+      "applicationCategory": "Utility",
+      "description": desc,
+      "url": url,
+      "author": {
+        "@type": "Organization",
+        "name": "LeadSpark"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free Plan",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Premium Plan",
+          "price": "9.99",
+          "priceCurrency": "USD"
+        }
+      ]
+    };
+
+  } else {
+    // 🌐 Homepage / Portfolio
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "LeadSpark",
+      "url": "https://leadspark.online/"
+    };
+  }
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.text = JSON.stringify(schema);
+  document.head.appendChild(script);
+})();
+    </script>
 </body>
 </html>
